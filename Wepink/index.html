@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Como Trabalhar com a Wepink</title>
+
+    <style>
+        /* ================================
+           CONFIGURAÇÕES GERAIS
+        ================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ================================
+           CABEÇALHO
+        ================================= */
+
+        header {
+            background: linear-gradient(135deg, #d9b7c7, #f2dce6);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #d8c4cd;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: #5d3c4d;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #6f5964;
+            font-size: 1rem;
+        }
+
+        /* ================================
+           CONTAINER PRINCIPAL
+        ================================= */
+
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .introducao {
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        /* ================================
+           CARDS
+        ================================= */
+
+        .opcoes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            border: 1px solid #e7d9df;
+            border-radius: 12px;
+            padding: 25px;
+            background: #fffafb;
+            transition: transform 0.2s ease,
+                        box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+        }
+
+        .numero {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: #b86c8d;
+            color: white;
+
+            font-weight: bold;
+            font-size: 1.2rem;
+
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: #663c50;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* ================================
+           BOTÕES
+        ================================= */
+
+        .botao {
+            display: inline-block;
+
+            background: #a94f77;
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 20px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            transition: background 0.2s ease,
+                        transform 0.2s ease;
+        }
+
+        .botao:hover {
+            background: #8f3e63;
+            transform: translateY(-2px);
+        }
+
+        /* ================================
+           DESTAQUE
+        ================================= */
+
+        .destaque {
+            margin-top: 35px;
+            padding: 20px;
+
+            background: #f8edf2;
+
+            border-left: 5px solid #b86c8d;
+            border-radius: 6px;
+        }
+
+        .destaque strong {
+            color: #713d55;
+        }
+
+        /* ================================
+           RODAPÉ
+        ================================= */
+
+        footer {
+            margin-top: 40px;
+
+            background: #4c3a43;
+            color: #eee;
+
+            text-align: center;
+
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* ================================
+           RESPONSIVIDADE
+        ================================= */
+
+        @media (max-width: 768px) {
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            main {
+                margin: 25px auto;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            .opcoes {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================
+         CABEÇALHO
+    ================================= -->
+
+    <header>
+
+        <h1>Como Trabalhar com a Wepink</h1>
+
+        <p>
+            Conheça as possibilidades encontradas nos canais oficiais
+            da marca.
+        </p>
+
+    </header>
+
+
+    <!-- ================================
+         CONTEÚDO PRINCIPAL
+    ================================= -->
+
+    <main>
+
+        <section class="container">
+
+            <p class="introducao">
+                No site oficial da Wepink, foram encontradas
+                <strong>duas modalidades distintas</strong>
+                para quem deseja trabalhar comercialmente com a marca:
+                franquia e revenda.
+            </p>
+
+
+            <div class="opcoes">
+
+
+                <!-- ================================
+                     FRANQUIA
+                ================================= -->
+
+                <article class="card">
+
+                    <div class="numero">
+                        1
+                    </div>
+
+                    <h2>
+                        Franquia Wepink
+                    </h2>
+
+                    <p>
+                        Existe um programa oficial para abertura de
+                        <strong>quiosques e lojas Wepink</strong>.
+                    </p>
+
+                    <p>
+                        A empresa disponibiliza uma página específica
+                        para candidatura de interessados em se tornar
+                        franqueados.
+                    </p>
+
+                    <p>
+                        Durante o cadastro são solicitadas informações
+                        como:
+                    </p>
+
+                    <ul style="margin: 0 0 25px 20px;">
+
+                        <li>
+                            Valor disponível para investimento;
+                        </li>
+
+                        <li>
+                            Cidade de interesse;
+                        </li>
+
+                        <li>
+                            Shopping pretendido;
+                        </li>
+
+                        <li>
+                            Experiência empresarial.
+                        </li>
+
+                    </ul>
+
+
+                    <a
+                        href="https://www.wepink.com.br/franquias"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="botao"
+                    >
+                        Quero ser franqueado Wepink
+                    </a>
+
+                </article>
+
+
+                <!-- ================================
+                     REVENDA
+                ================================= -->
+
+                <article class="card">
+
+                    <div class="numero">
+                        2
+                    </div>
+
+                    <h2>
+                        Revenda
+                    </h2>
+
+                    <p>
+                        Para quem procura uma alternativa à abertura
+                        de uma loja ou quiosque, existe também um canal
+                        relacionado à <strong>revenda de produtos</strong>.
+                    </p>
+
+                    <p>
+                        Na Central de Atendimento oficial da Wepink,
+                        <strong>"Revenda"</strong> aparece como um dos
+                        motivos disponíveis para contato.
+                    </p>
+
+                    <p>
+                        Dessa forma, é possível entrar em contato
+                        diretamente com a empresa para consultar:
+                    </p>
+
+                    <ul style="margin: 0 0 25px 20px;">
+
+                        <li>
+                            Possibilidade de cadastro como revendedor;
+                        </li>
+
+                        <li>
+                            Requisitos necessários;
+                        </li>
+
+                        <li>
+                            Pedido mínimo;
+                        </li>
+
+                        <li>
+                            Condições comerciais;
+                        </li>
+
+                        <li>
+                            Tabela de preços para revenda.
+                        </li>
+
+                    </ul>
+
+
+                    <a
+                        href="https://www.wepink.com.br/atendimento-form"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="botao"
+                    >
+                        Falar com a Wepink sobre Revenda
+                    </a>
+
+                </article>
+
+            </div>
+
+
+            <!-- ================================
+                 OBSERVAÇÃO
+            ================================= -->
+
+            <aside class="destaque">
+
+                <strong>Importante:</strong>
+
+                antes de comprar produtos diretamente pelo
+                e-commerce tradicional com a finalidade de revenda,
+                é recomendável consultar a Wepink e verificar
+                oficialmente as condições comerciais e regras
+                aplicáveis aos revendedores.
+
+            </aside>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================
+         RODAPÉ
+    ================================= -->
+
+    <footer>
+
+        <p>
+            Informações baseadas nos canais oficiais da Wepink.
+        </p>
+
+    </footer>
+
+</body>
+</html>
