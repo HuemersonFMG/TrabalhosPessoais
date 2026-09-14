@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minecraft Java 1.16.5</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #161616;
+            color: #f1f1f1;
+            line-height: 1.6;
+        }
+
+        header {
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.75)
+                ),
+                linear-gradient(
+                    135deg,
+                    #2e7d32,
+                    #1b5e20
+                );
+
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 5px solid #66bb6a;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background: #202020;
+            border-bottom: 1px solid #3a3a3a;
+
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            padding: 14px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+
+            background: #2e7d32;
+            padding: 9px 14px;
+
+            border-radius: 6px;
+
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            background: #43a047;
+            transform: translateY(-2px);
+        }
+
+        main {
+            width: min(1100px, 92%);
+            margin: 35px auto;
+        }
+
+        section {
+            background: #222222;
+            border: 1px solid #383838;
+            border-radius: 12px;
+
+            padding: 28px;
+            margin-bottom: 28px;
+
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+        }
+
+        section h2 {
+            color: #81c784;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #388e3c;
+            padding-bottom: 10px;
+        }
+
+        section h3 {
+            color: #c8e6c9;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        ul,
+        ol {
+            margin-left: 24px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .intro {
+            border-left: 5px solid #66bb6a;
+        }
+
+        .destaque {
+            background: #263b27;
+            border-left: 5px solid #81c784;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 18px;
+        }
+
+        .alerta {
+            background: #3d2f16;
+            border-left: 5px solid #ffb300;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 18px;
+        }
+
+        .info {
+            background: #1f3344;
+            border-left: 5px solid #42a5f5;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 18px;
+        }
+
+        .objetivos-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .card {
+            background: #2b2b2b;
+            border: 1px solid #414141;
+            border-radius: 10px;
+
+            padding: 20px;
+
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #66bb6a;
+        }
+
+        .card .numero {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 38px;
+            height: 38px;
+
+            background: #388e3c;
+            color: white;
+
+            border-radius: 50%;
+            font-weight: bold;
+
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #a5d6a7;
+        }
+
+        .progressao {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-top: 22px;
+        }
+
+        .etapa {
+            background: #2e7d32;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .seta {
+            color: #81c784;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #444444;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #2e7d32;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #292929;
+        }
+
+        tr:hover {
+            background: #333333;
+        }
+
+        .boss {
+            border: 2px solid #7e57c2;
+        }
+
+        .boss h2 {
+            color: #b39ddb;
+            border-color: #7e57c2;
+        }
+
+        .pos-jogo {
+            border: 2px solid #42a5f5;
+        }
+
+        .pos-jogo h2 {
+            color: #90caf9;
+            border-color: #42a5f5;
+        }
+
+        .chunkbase {
+            border: 2px solid #ffca28;
+        }
+
+        .chunkbase h2 {
+            color: #ffd54f;
+            border-color: #ffca28;
+        }
+
+        .botao-link {
+            display: inline-block;
+
+            margin-top: 15px;
+            padding: 12px 18px;
+
+            background: #43a047;
+            color: #ffffff;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            border-radius: 8px;
+
+            transition: 0.2s;
+        }
+
+        .botao-link:hover {
+            background: #66bb6a;
+            transform: translateY(-2px);
+        }
+
+        code {
+            display: inline-block;
+
+            background: #111111;
+            color: #a5d6a7;
+
+            padding: 4px 8px;
+            border-radius: 4px;
+
+            font-family: Consolas, monospace;
+        }
+
+        .codigo-bloco {
+            display: block;
+
+            background: #111111;
+            color: #a5d6a7;
+
+            padding: 14px;
+            margin: 12px 0;
+
+            border-radius: 6px;
+            border: 1px solid #333333;
+
+            font-family: Consolas, monospace;
+            overflow-x: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 28px 15px;
+
+            background: #111111;
+            border-top: 1px solid #333333;
+
+            color: #aaaaaa;
+        }
+
+        @media (max-width: 650px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            nav {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+
+            nav a {
+                white-space: nowrap;
+            }
+
+            .progressao {
+                flex-direction: column;
+            }
+
+            .seta {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>⛏️ Guia Minecraft Java 1.16.5</h1>
+
+        <p>
+            Guia de progressão para quem está jogando Minecraft Java Edition
+            1.16.5 no modo sobrevivência, com os principais objetivos do jogo
+            e instruções para visualizar o mundo completo usando a seed. 
+        </p>
+    </header>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#progressao">Progressão</a>
+        <a href="#objetivos">Objetivos</a>
+        <a href="#nether">Nether</a>
+        <a href="#stronghold">Stronghold</a>
+        <a href="#enderdragon">Ender Dragon</a>
+        <a href="#depois">Depois do Dragão</a>
+        <a href="#chunkbase">Mapa pela Seed</a>
+    </nav>
+
+    <main>
+
+        <section id="inicio" class="intro">
+            <h2>🎮 Qual é o objetivo do Minecraft?</h2>
+
+            <p>
+                Minecraft é um jogo do tipo <strong>sandbox</strong>.
+                Isso significa que não existe apenas um objetivo obrigatório.
+                O jogador pode construir, explorar, minerar, criar fazendas,
+                lutar contra monstros ou simplesmente desenvolver seu próprio mundo.
+            </p>
+
+            <p>
+                Entretanto, o jogo possui uma progressão principal que pode
+                ser seguida como se fosse uma campanha.
+            </p>
+
+            <div class="destaque">
+                <strong>Objetivo principal:</strong>
+                evoluir seus equipamentos, explorar o Nether,
+                encontrar uma Stronghold, acessar o End e derrotar
+                o Ender Dragon.
+            </div>
+        </section>
+
+        <section id="progressao">
+            <h2>🧭 Progressão principal</h2>
+
+            <p>
+                Uma forma simples de visualizar sua evolução é seguir
+                esta sequência:
+            </p>
+
+            <div class="progressao">
+                <div class="etapa">🏠 Base</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">⛏️ Ferro</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">💎 Diamante</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">✨ Encantamentos</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">🔥 Nether</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">🏰 Stronghold</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">🐉 Ender Dragon</div>
+            </div>
+        </section>
+
+        <section id="objetivos">
+            <h2>📋 Objetivos passo a passo</h2>
+
+            <div class="objetivos-grid">
+
+                <div class="card">
+                    <div class="numero">1</div>
+
+                    <h3>🏠 Criar uma base</h3>
+
+                    <p>
+                        Construa um lugar seguro para sobreviver durante
+                        as noites.
+                    </p>
+
+                    <ul>
+                        <li>Cama</li>
+                        <li>Fornalha</li>
+                        <li>Baús</li>
+                        <li>Mesa de trabalho</li>
+                        <li>Fonte de comida</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="numero">2</div>
+
+                    <h3>⛏️ Conseguir ferro</h3>
+
+                    <p>
+                        O ferro é um dos recursos mais importantes
+                        do início do jogo.
+                    </p>
+
+                    <ul>
+                        <li>Picareta de ferro</li>
+                        <li>Espada</li>
+                        <li>Armadura</li>
+                        <li>Escudo</li>
+                        <li>Baldes</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="numero">3</div>
+
+                    <h3>💎 Encontrar diamantes</h3>
+
+                    <p>
+                        Os diamantes permitem fabricar equipamentos
+                        muito mais resistentes.
+                    </p>
+
+                    <ul>
+                        <li>Picareta de diamante</li>
+                        <li>Espada de diamante</li>
+                        <li>Armadura de diamante</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="numero">4</div>
+
+                    <h3>✨ Criar encantamentos</h3>
+
+                    <p>
+                        Encantamentos deixam seus equipamentos
+                        consideravelmente mais fortes.
+                    </p>
+
+                    <ul>
+                        <li>Mesa de encantamentos</li>
+                        <li>Estantes de livros</li>
+                        <li>Lápis-lazúli</li>
+                        <li>Níveis de experiência</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="nether">
+            <h2>🔥 Entrar no Nether</h2>
+
+            <p>
+                Para acessar o Nether, você precisa construir um
+                portal utilizando obsidiana.
+            </p>
+
+            <h3>Itens recomendados</h3>
+
+            <ul>
+                <li>Armadura</li>
+                <li>Escudo</li>
+                <li>Comida</li>
+                <li>Arco e flechas</li>
+                <li>Blocos para construção</li>
+                <li>Uma peça de armadura de ouro</li>
+            </ul>
+
+            <div class="alerta">
+                No Nether, procure uma
+                <strong>Fortaleza do Nether</strong>.
+                Ela será fundamental para continuar a progressão.
+            </div>
+
+            <h3>Objetivo dentro da fortaleza</h3>
+
+            <p>
+                Derrote <strong>Blazes</strong> para conseguir
+                <strong>Blaze Rods</strong>.
+            </p>
+
+            <p>
+                As Blaze Rods podem ser transformadas em
+                <strong>Blaze Powder</strong>.
+            </p>
+        </section>
+
+        <section>
+            <h2>👁️ Criar Olhos do Ender</h2>
+
+            <p>
+                Para localizar a Stronghold, você precisará fabricar
+                Olhos do Ender.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Como conseguir</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Pérola do Ender</td>
+                        <td>
+                            Pode ser obtida principalmente derrotando
+                            Endermen.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Blaze Powder</td>
+                        <td>
+                            Produzido utilizando Blaze Rods obtidas
+                            no Nether.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Olho do Ender</td>
+                        <td>
+                            Pérola do Ender + Blaze Powder.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="stronghold">
+            <h2>🏰 Encontrar a Stronghold</h2>
+
+            <p>
+                Jogue um <strong>Olho do Ender</strong> para cima.
+                Ele voará na direção aproximada da Stronghold.
+            </p>
+
+            <p>
+                Continue seguindo a direção indicada até perceber que
+                o Olho começa a apontar para uma região muito próxima.
+            </p>
+
+            <p>
+                Depois disso, será necessário cavar e procurar
+                a estrutura subterrânea.
+            </p>
+
+            <div class="destaque">
+                <strong>Importante:</strong>
+                Silverfish podem aparecer em blocos infestados dentro
+                da Stronghold. A sala do Portal do End também possui
+                um spawner de Silverfish.
+            </div>
+        </section>
+
+        <section>
+            <h2>🌀 Encontrar o Portal do End</h2>
+
+            <p>
+                Dentro da Stronghold existe uma sala especial contendo
+                o Portal do End.
+            </p>
+
+            <p>
+                Alguns blocos do portal já podem possuir Olhos do Ender
+                instalados.
+            </p>
+
+            <p>
+                Você deve preencher os espaços restantes até completar
+                todos os blocos do portal.
+            </p>
+
+            <div class="alerta">
+                Antes de entrar no End, leve bons equipamentos,
+                bastante comida, arco, flechas e blocos.
+            </div>
+        </section>
+
+        <section id="enderdragon" class="boss">
+            <h2>🐉 Derrotar o Ender Dragon</h2>
+
+            <p>
+                O Ender Dragon é considerado o principal chefe da
+                progressão tradicional do Minecraft.
+            </p>
+
+            <h3>Primeiro objetivo</h3>
+
+            <p>
+                Destrua os <strong>End Crystals</strong> que ficam
+                localizados no topo das torres de obsidiana.
+            </p>
+
+            <p>
+                Esses cristais recuperam a vida do dragão.
+            </p>
+
+            <h3>Depois</h3>
+
+            <p>
+                Ataque o Ender Dragon com arco quando ele estiver
+                voando e utilize sua espada quando ele pousar
+                próximo ao portal central.
+            </p>
+
+            <div class="destaque">
+                Quando o Ender Dragon for derrotado, você terá
+                concluído a principal progressão do Minecraft.
+            </div>
+        </section>
+
+        <section id="depois" class="pos-jogo">
+            <h2>🌌 O que fazer depois do Ender Dragon?</h2>
+
+            <p>
+                O jogo não termina após derrotar o dragão.
+                Na verdade, você desbloqueia novas possibilidades.
+            </p>
+
+            <div class="objetivos-grid">
+
+                <div class="card">
+                    <h3>🏙️ Explorar End Cities</h3>
+
+                    <p>
+                        Explore as ilhas externas do End e procure
+                        grandes cidades.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🪽 Conseguir Elytra</h3>
+
+                    <p>
+                        A Elytra permite ao jogador planar e voar
+                        utilizando fogos de artifício.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>📦 Conseguir Shulker Boxes</h3>
+
+                    <p>
+                        Elas funcionam como baús portáteis e ajudam
+                        muito na exploração.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🏗️ Grandes construções</h3>
+
+                    <p>
+                        Depois da progressão principal, você pode
+                        criar cidades, castelos, fazendas automáticas
+                        ou qualquer projeto que imaginar.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="chunkbase" class="chunkbase">
+            <h2>🗺️ Visualizar o mapa completo usando a Seed</h2>
+
+            <p>
+                Cada mundo do Minecraft é gerado a partir de um número
+                chamado <strong>Seed</strong>, ou semente.
+            </p>
+
+            <p>
+                Utilizando essa Seed, é possível visualizar o mapa do mundo
+                em ferramentas externas como o
+                <strong>Chunkbase Seed Map</strong>.
+            </p>
+
+            <div class="info">
+                O Chunkbase não modifica seu mundo.
+                Ele apenas calcula onde os biomas e estruturas devem existir
+                com base na Seed e na versão do Minecraft.
+            </div>
+
+            <a
+                class="botao-link"
+                href="https://www.chunkbase.com/apps/seed-map"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                🗺️ Abrir Chunkbase Seed Map
+            </a>
+
+            <h3>1. Descobrir a Seed do seu mundo</h3>
+
+            <p>
+                Entre normalmente no seu mundo e pressione
+                <strong>T</strong> para abrir o chat.
+            </p>
+
+            <p>
+                Digite:
+            </p>
+
+            <div class="codigo-bloco">
+/seed
+            </div>
+
+            <p>
+                O Minecraft mostrará um número semelhante a:
+            </p>
+
+            <div class="codigo-bloco">
+Seed: -7842563947258173
+            </div>
+
+            <p>
+                Copie exatamente esse número, incluindo o sinal negativo,
+                caso exista.
+            </p>
+
+            <h3>2. Informar a Seed no Chunkbase</h3>
+
+            <p>
+                Depois de abrir o Chunkbase Seed Map, localize o campo
+                <strong>Seed</strong> e cole o número copiado do Minecraft.
+            </p>
+
+            <p>
+                Em seguida, configure corretamente a versão do jogo.
+            </p>
+
+            <div class="destaque">
+                Para este mundo, selecione uma versão compatível com
+                <strong>Minecraft Java Edition 1.16.5</strong>.
+            </div>
+
+            <h3>3. Escolher a dimensão</h3>
+
+            <p>
+                O Chunkbase permite visualizar diferentes dimensões do jogo.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dimensão</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Overworld</td>
+                        <td>
+                            Mundo principal, onde ficam sua base,
+                            vilas, oceanos, florestas e Strongholds.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Nether</td>
+                        <td>
+                            Dimensão onde ficam as fortalezas do Nether,
+                            bastions e outros locais.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>End</td>
+                        <td>
+                            Dimensão do Ender Dragon e das End Cities.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4. Ver suas coordenadas dentro do Minecraft</h3>
+
+            <p>
+                Pressione <strong>F3</strong> para abrir a tela de informações.
+            </p>
+
+            <p>
+                Procure pela linha das coordenadas:
+            </p>
+
+            <div class="codigo-bloco">
+XYZ: 245 / 32 / -870
+            </div>
+
+            <p>
+                Nesse exemplo:
+            </p>
+
+            <ul>
+                <li><strong>X = 245</strong></li>
+                <li><strong>Y = 32</strong></li>
+                <li><strong>Z = -870</strong></li>
+            </ul>
+
+            <div class="info">
+                Para localizar sua posição no mapa do Chunkbase,
+                normalmente você precisa apenas das coordenadas
+                <strong>X</strong> e <strong>Z</strong>.
+            </div>
+
+            <h3>5. Localizar sua posição no Chunkbase</h3>
+
+            <p>
+                No mapa, informe ou procure pelas mesmas coordenadas
+                <strong>X</strong> e <strong>Z</strong>.
+            </p>
+
+            <p>
+                Assim você poderá identificar exatamente a região
+                correspondente à sua localização dentro do jogo.
+            </p>
+
+            <h3>6. Mostrar estruturas no mapa</h3>
+
+            <p>
+                No Chunkbase existem filtros que permitem mostrar ou esconder
+                diferentes estruturas.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Estrutura</th>
+                        <th>Utilidade</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Village</td>
+                        <td>
+                            Mostra a localização das vilas.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Stronghold</td>
+                        <td>
+                            Mostra onde ficam as fortalezas que podem conter
+                            o Portal do End.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mineshaft</td>
+                        <td>
+                            Mostra minas abandonadas subterrâneas.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Ruined Portal</td>
+                        <td>
+                            Mostra portais em ruínas.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Desert Temple</td>
+                        <td>
+                            Mostra templos localizados no deserto.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Jungle Temple</td>
+                        <td>
+                            Mostra templos encontrados em selvas.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Ocean Monument</td>
+                        <td>
+                            Mostra monumentos oceânicos.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Shipwreck</td>
+                        <td>
+                            Mostra navios naufragados.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Buried Treasure</td>
+                        <td>
+                            Mostra tesouros enterrados.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>7. Procurar uma Stronghold</h3>
+
+            <p>
+                Como um dos objetivos principais é encontrar o Portal do End,
+                ative a opção <strong>Stronghold</strong>.
+            </p>
+
+            <p>
+                Em seguida, localize a Stronghold mais próxima das coordenadas
+                da sua base ou da região onde você está minerando.
+            </p>
+
+            <div class="alerta">
+                O Chunkbase pode revelar muitas estruturas e locais secretos.
+                Se você preferir explorar sem spoilers, use apenas as opções
+                realmente necessárias.
+            </div>
+
+            <h3>8. Relação com as Silverfish</h3>
+
+            <p>
+                Caso você encontre várias Silverfish enquanto minera,
+                pode utilizar o Chunkbase para verificar se existe uma
+                Stronghold próxima daquela região.
+            </p>
+
+            <p>
+                Porém, encontrar uma Silverfish isolada não confirma
+                automaticamente que existe uma Stronghold no local.
+            </p>
+
+            <div class="destaque">
+                Uma boa combinação é usar o Chunkbase apenas como auxílio
+                e continuar explorando o restante do mundo normalmente.
+            </div>
+        </section>
+
+        <section>
+            <h2>🎯 Objetivo recomendado para quem está começando</h2>
+
+            <p>
+                Se você ainda está explorando cavernas e aprendendo
+                as mecânicas, não é necessário correr para derrotar
+                o Ender Dragon.
+            </p>
+
+            <p>
+                Uma boa meta inicial é:
+            </p>
+
+            <div class="progressao">
+                <div class="etapa">🏠 Base segura</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">🛡️ Armadura de ferro</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">💎 Diamantes</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">✨ Encantamentos</div>
+                <div class="seta">→</div>
+
+                <div class="etapa">🔥 Nether</div>
+            </div>
+
+            <div class="destaque">
+                Aproveite também para explorar cavernas, vilas,
+                minas abandonadas e outras estruturas.
+                Parte da graça do Minecraft está justamente em
+                descobrir o mundo aos poucos.
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Guia de objetivos e exploração — Minecraft Java Edition 1.16.5
+    </footer>
+
+</body>
+</html>
