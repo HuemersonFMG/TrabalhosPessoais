@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Análise do Orçamento de Manutenção — Peugeot 207</title>
+
+    <style>
+        :root {
+            --cor-primaria: #163d6b;
+            --cor-secundaria: #245c96;
+            --cor-destaque: #f2b705;
+            --cor-fundo: #eef2f6;
+            --cor-card: #ffffff;
+            --cor-texto: #27313c;
+            --cor-borda: #cbd5df;
+            --cor-positivo: #177245;
+            --cor-atencao: #a86700;
+            --cor-negativo: #a93226;
+            --cor-claro: #f7f9fb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(1200px, 94%);
+            margin: 30px auto;
+        }
+
+        .cabecalho {
+            background: linear-gradient(
+                135deg,
+                var(--cor-primaria),
+                var(--cor-secundaria)
+            );
+            color: #ffffff;
+            padding: 32px;
+            border-radius: 10px 10px 0 0;
+            border-bottom: 5px solid var(--cor-destaque);
+        }
+
+        .cabecalho h1 {
+            margin-bottom: 8px;
+            font-size: 2rem;
+        }
+
+        .cabecalho p {
+            color: #e7edf5;
+        }
+
+        .conteudo {
+            background-color: var(--cor-card);
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .identificacao {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .informacao {
+            background-color: var(--cor-claro);
+            border-left: 5px solid var(--cor-secundaria);
+            padding: 16px;
+            border-radius: 5px;
+        }
+
+        .informacao span {
+            display: block;
+            margin-bottom: 4px;
+            color: #5d6873;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .informacao strong {
+            color: var(--cor-primaria);
+            font-size: 1.15rem;
+        }
+
+        h2 {
+            margin: 32px 0 15px;
+            padding-bottom: 8px;
+            color: var(--cor-primaria);
+            border-bottom: 2px solid var(--cor-destaque);
+        }
+
+        .tabela-responsiva {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--cor-borda);
+            border-radius: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        caption {
+            padding: 15px;
+            background-color: #e8eef5;
+            color: var(--cor-primaria);
+            font-weight: bold;
+            text-align: left;
+        }
+
+        th,
+        td {
+            padding: 12px 10px;
+            border: 1px solid var(--cor-borda);
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: var(--cor-primaria);
+            color: #ffffff;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f6f8fa;
+        }
+
+        tbody tr:hover {
+            background-color: #eaf1f8;
+        }
+
+        td.numero {
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        td.valor {
+            text-align: right;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+
+        .status {
+            display: inline-block;
+            min-width: 90px;
+            padding: 4px 9px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .status-justo {
+            background-color: #dff2e8;
+            color: var(--cor-positivo);
+        }
+
+        .status-atencao {
+            background-color: #fff1d4;
+            color: var(--cor-atencao);
+        }
+
+        .status-revisar {
+            background-color: #f8dddd;
+            color: var(--cor-negativo);
+        }
+
+        tfoot td {
+            background-color: #dde6ef;
+            color: var(--cor-primaria);
+            font-weight: bold;
+        }
+
+        .resumo {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .resumo-card {
+            padding: 20px;
+            background-color: var(--cor-claro);
+            border: 1px solid var(--cor-borda);
+            border-top: 5px solid var(--cor-secundaria);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .resumo-card span {
+            display: block;
+            margin-bottom: 8px;
+            color: #5c6670;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .resumo-card strong {
+            color: var(--cor-primaria);
+            font-size: 1.45rem;
+        }
+
+        .resumo-card.total {
+            border-top-color: var(--cor-destaque);
+            background-color: #fff9df;
+        }
+
+        .resumo-card.total strong {
+            color: #7c5800;
+        }
+
+        .observacao {
+            margin-top: 25px;
+            padding: 18px;
+            background-color: #fff8dc;
+            border-left: 5px solid var(--cor-destaque);
+            border-radius: 5px;
+        }
+
+        .observacao h3 {
+            margin-bottom: 8px;
+            color: #755400;
+        }
+
+        .lista-analise {
+            margin: 12px 0 0 22px;
+        }
+
+        .lista-analise li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            margin-top: 25px;
+            color: #65707b;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        @media (max-width: 850px) {
+            .identificacao,
+            .resumo {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .container {
+                width: 100%;
+                margin: 0;
+            }
+
+            .cabecalho,
+            .conteudo {
+                border-radius: 0;
+            }
+
+            .cabecalho,
+            .conteudo {
+                padding: 20px;
+            }
+
+            .identificacao,
+            .resumo {
+                grid-template-columns: 1fr;
+            }
+
+            .cabecalho h1 {
+                font-size: 1.55rem;
+            }
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+            }
+
+            .container {
+                width: 100%;
+                margin: 0;
+            }
+
+            .conteudo {
+                box-shadow: none;
+            }
+
+            tbody tr:hover {
+                background-color: inherit;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <header class="cabecalho">
+            <h1>Análise do Orçamento de Manutenção</h1>
+
+            <p>
+                Comparação dos valores das peças, serviços e mão de obra
+                apresentados para o Peugeot 207.
+            </p>
+        </header>
+
+        <section class="conteudo">
+            <section class="identificacao" aria-label="Dados principais do orçamento">
+                <div class="informacao">
+                    <span>Veículo</span>
+                    <strong>Peugeot 207 XR 1.4 Flex</strong>
+                </div>
+
+                <div class="informacao">
+                    <span>Ano/modelo</span>
+                    <strong>2012/2013</strong>
+                </div>
+
+                <div class="informacao">
+                    <span>Valor FIPE aproximado</span>
+                    <strong>R$ 20.000,00</strong>
+                </div>
+            </section>
+
+            <section>
+                <h2>Comparação das peças</h2>
+
+                <div class="tabela-responsiva">
+                    <table>
+                        <caption>
+                            Relação das peças apresentadas no orçamento
+                        </caption>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Peça</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Valor unitário</th>
+                                <th scope="col">Valor total</th>
+                                <th scope="col">% das peças</th>
+                                <th scope="col">% do orçamento</th>
+                                <th scope="col">Avaliação</th>
+                                <th scope="col">Observação</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Bandeja</td>
+                                <td class="numero">1</td>
+                                <td class="valor">R$ 349,00</td>
+                                <td class="valor">R$ 349,00</td>
+                                <td class="numero">14,41%</td>
+                                <td class="numero">7,80%</td>
+                                <td class="numero">
+                                    <span class="status status-justo">Razoável</span>
+                                </td>
+                                <td>Confirmar marca, aplicação e lado da bandeja.</td>
+                            </tr>
+
+                            <tr>
+                                <td>Coifa</td>
+                                <td class="numero">2</td>
+                                <td class="valor">R$ 42,45</td>
+                                <td class="valor">R$ 84,90</td>
+                                <td class="numero">3,51%</td>
+                                <td class="numero">1,90%</td>
+                                <td class="numero">
+                                    <span class="status status-justo">Razoável</span>
+                                </td>
+                                <td>
+                                    Verificar se são coifas da homocinética e se
+                                    existem danos ou vazamento de graxa.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Filtro de óleo</td>
+                                <td class="numero">1</td>
+                                <td class="valor">R$ 39,00</td>
+                                <td class="valor">R$ 39,00</td>
+                                <td class="numero">1,61%</td>
+                                <td class="numero">0,87%</td>
+                                <td class="numero">
+                                    <span class="status status-justo">Razoável</span>
+                                </td>
+                                <td>Item normal de manutenção preventiva.</td>
+                            </tr>
+
+                            <tr>
+                                <td>Kit de embreagem</td>
+                                <td class="numero">1</td>
+                                <td class="valor">R$ 839,00</td>
+                                <td class="valor">R$ 839,00</td>
+                                <td class="numero">34,64%</td>
+                                <td class="numero">18,76%</td>
+                                <td class="numero">
+                                    <span class="status status-atencao">Verificar</span>
+                                </td>
+                                <td>
+                                    É a peça mais cara. Confirmar marca, garantia
+                                    e componentes incluídos no kit.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Kit de rolamento</td>
+                                <td class="numero">2</td>
+                                <td class="valor">R$ 139,50</td>
+                                <td class="valor">R$ 279,00</td>
+                                <td class="numero">11,52%</td>
+                                <td class="numero">6,24%</td>
+                                <td class="numero">
+                                    <span class="status status-justo">Razoável</span>
+                                </td>
+                                <td>
+                                    Confirmar a localização e a necessidade da
+                                    substituição dos dois kits.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Óleo do motor</td>
+                                <td class="numero">4</td>
+                                <td class="valor">R$ 65,50</td>
+                                <td class="valor">R$ 262,00</td>
+                                <td class="numero">10,82%</td>
+                                <td class="numero">5,86%</td>
+                                <td class="numero">
+                                    <span class="status status-atencao">Confirmar</span>
+                                </td>
+                                <td>
+                                    Confirmar viscosidade, especificação,
+                                    fabricante e volume de cada embalagem.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Pastilha de freio</td>
+                                <td class="numero">1</td>
+                                <td class="valor">R$ 170,00</td>
+                                <td class="valor">R$ 170,00</td>
+                                <td class="numero">7,02%</td>
+                                <td class="numero">3,80%</td>
+                                <td class="numero">
+                                    <span class="status status-justo">Razoável</span>
+                                </td>
+                                <td>
+                                    Item de segurança. Verificar marca e estado
+                                    dos discos de freio.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Pneus meia-vida</td>
+                                <td class="numero">2</td>
+                                <td class="valor">R$ 150,00</td>
+                                <td class="valor">R$ 300,00</td>
+                                <td class="numero">12,39%</td>
+                                <td class="numero">6,71%</td>
+                                <td class="numero">
+                                    <span class="status status-revisar">Revisar</span>
+                                </td>
+                                <td>
+                                    Verificar marca, DOT, desgaste, reparos,
+                                    deformações e profundidade dos sulcos.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Rolamento de roda</td>
+                                <td class="numero">1</td>
+                                <td class="valor">R$ 99,00</td>
+                                <td class="valor">R$ 99,00</td>
+                                <td class="numero">4,09%</td>
+                                <td class="numero">2,21%</td>
+                                <td class="numero">
+                                    <span class="status status-justo">Razoável</span>
+                                </td>
+                                <td>
+                                    Confirmar se este item é diferente dos kits
+                                    de rolamento já relacionados.
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Total das peças</td>
+                                <td class="valor">R$ 2.421,90</td>
+                                <td class="numero">100,00%</td>
+                                <td class="numero">54,16%</td>
+                                <td colspan="2">
+                                    Mais da metade do orçamento corresponde às peças.
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2>Comparação dos serviços e mão de obra</h2>
+
+                <div class="tabela-responsiva">
+                    <table>
+                        <caption>
+                            Relação dos serviços apresentados no orçamento
+                        </caption>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Serviço</th>
+                                <th scope="col">Quantidade/horas</th>
+                                <th scope="col">Valor unitário</th>
+                                <th scope="col">Valor total</th>
+                                <th scope="col">% dos serviços</th>
+                                <th scope="col">% do orçamento</th>
+                                <th scope="col">Avaliação</th>
+                                <th scope="col">Observação</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Alinhamento</td>
+                                <td class="numero">1</td>
+                                <td class="valor">R$ 50,00</td>
+                                <td class="valor">R$ 50,00</td>
+                                <td class="numero">2,44%</td>
+                                <td class="numero">1,12%</td>
+                                <td class="numero">
+                                    <span class="status status-justo">Razoável</span>
+                                </td>
+                                <td>
+                                    Recomendado após manutenção da suspensão
+                                    ou substituição de pneus.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Balanceamento</td>
+                                <td class="numero">4</td>
+                                <td class="valor">R$ 25,00</td>
+                                <td class="valor">R$ 100,00</td>
+                                <td class="numero">4,88%</td>
+                                <td class="numero">2,24%</td>
+                                <td class="numero">
+                                    <span class="status status-justo">Razoável</span>
+                                </td>
+                                <td>
+                                    O orçamento prevê o balanceamento das quatro rodas.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Limpeza de bico e TBI</td>
+                                <td class="numero">1</td>
+                                <td class="valor">R$ 250,00</td>
+                                <td class="valor">R$ 250,00</td>
+                                <td class="numero">12,20%</td>
+                                <td class="numero">5,59%</td>
+                                <td class="numero">
+                                    <span class="status status-atencao">Avaliar</span>
+                                </td>
+                                <td>
+                                    Deve ser justificada por sintomas, falhas,
+                                    sujeira constatada ou diagnóstico técnico.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Limpeza do sistema de freios com troca dos fluidos
+                                </td>
+                                <td class="numero">1</td>
+                                <td class="valor">R$ 200,00</td>
+                                <td class="valor">R$ 200,00</td>
+                                <td class="numero">9,76%</td>
+                                <td class="numero">4,47%</td>
+                                <td class="numero">
+                                    <span class="status status-justo">Importante</span>
+                                </td>
+                                <td>
+                                    Confirmar se o fluido de freio está incluído
+                                    no valor do serviço.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Mão de obra geral</td>
+                                <td class="numero">1</td>
+                                <td class="valor">R$ 1.450,00</td>
+                                <td class="valor">R$ 1.450,00</td>
+                                <td class="numero">70,73%</td>
+                                <td class="numero">32,42%</td>
+                                <td class="numero">
+                                    <span class="status status-atencao">Detalhar</span>
+                                </td>
+                                <td>
+                                    Solicitar a discriminação dos trabalhos
+                                    abrangidos por esse valor.
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Total dos serviços</td>
+                                <td class="valor">R$ 2.050,00</td>
+                                <td class="numero">100,00%</td>
+                                <td class="numero">45,84%</td>
+                                <td colspan="2">
+                                    A mão de obra geral corresponde à maior parte
+                                    do total de serviços.
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2>Resumo financeiro</h2>
+
+                <div class="resumo">
+                    <div class="resumo-card">
+                        <span>Total das peças</span>
+                        <strong>R$ 2.421,90</strong>
+                    </div>
+
+                    <div class="resumo-card">
+                        <span>Total dos serviços</span>
+                        <strong>R$ 2.050,00</strong>
+                    </div>
+
+                    <div class="resumo-card">
+                        <span>Valor FIPE considerado</span>
+                        <strong>R$ 20.000,00</strong>
+                    </div>
+
+                    <div class="resumo-card total">
+                        <span>Total do orçamento</span>
+                        <strong>R$ 4.471,90</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Relação com o valor do veículo</h2>
+
+                <div class="tabela-responsiva">
+                    <table>
+                        <caption>
+                            Participação de cada categoria em relação ao valor estimado do veículo
+                        </caption>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">% do orçamento</th>
+                                <th scope="col">% do valor do veículo</th>
+                                <th scope="col">Interpretação</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Peças</td>
+                                <td class="valor">R$ 2.421,90</td>
+                                <td class="numero">54,16%</td>
+                                <td class="numero">12,11%</td>
+                                <td>
+                                    As peças representam pouco mais da metade
+                                    do orçamento.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Serviços e mão de obra</td>
+                                <td class="valor">R$ 2.050,00</td>
+                                <td class="numero">45,84%</td>
+                                <td class="numero">10,25%</td>
+                                <td>
+                                    Quase metade do orçamento corresponde à execução
+                                    dos serviços.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Total da manutenção</strong></td>
+                                <td class="valor"><strong>R$ 4.471,90</strong></td>
+                                <td class="numero"><strong>100,00%</strong></td>
+                                <td class="numero"><strong>22,36%</strong></td>
+                                <td>
+                                    A manutenção equivale a aproximadamente
+                                    22,36% do valor estimado do veículo.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <aside class="observacao">
+                <h3>Pontos que devem ser confirmados antes da aprovação</h3>
+
+                <ul class="lista-analise">
+                    <li>
+                        Solicitar a marca e a garantia do kit de embreagem.
+                    </li>
+
+                    <li>
+                        Confirmar se os dois kits de rolamento e o rolamento
+                        de roda são peças diferentes.
+                    </li>
+
+                    <li>
+                        Solicitar o detalhamento dos R$ 1.450,00 de mão de obra.
+                    </li>
+
+                    <li>
+                        Confirmar a marca, viscosidade e especificação do óleo.
+                    </li>
+
+                    <li>
+                        Avaliar cuidadosamente o estado dos pneus meia-vida.
+                    </li>
+
+                    <li>
+                        Perguntar se a limpeza dos bicos e da TBI foi indicada
+                        após diagnóstico ou apenas como manutenção preventiva.
+                    </li>
+                </ul>
+            </aside>
+
+            <footer>
+                Documento para conferência e comparação do orçamento.
+                Os percentuais foram calculados sobre o total de R$ 4.471,90
+                e sobre o valor estimado de R$ 20.000,00 para o veículo.
+            </footer>
+        </section>
+    </main>
+</body>
+</html>

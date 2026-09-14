@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manual de Manutenção - Peugeot 207</title>
+
+    <style>
+        :root{
+            --azul:#123d6b;
+            --azul2:#1f5d9a;
+            --amarelo:#f0b400;
+            --cinza:#eef2f6;
+            --texto:#2b3642;
+            --branco:#ffffff;
+            --borda:#cfd8e2;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:var(--cinza);
+            font-family:Segoe UI,Arial,sans-serif;
+            color:var(--texto);
+        }
+
+        .container{
+            width:min(1200px,95%);
+            margin:30px auto;
+        }
+
+        header{
+            background:linear-gradient(135deg,var(--azul),var(--azul2));
+            color:#fff;
+            padding:35px;
+            border-radius:10px 10px 0 0;
+            border-bottom:5px solid var(--amarelo);
+        }
+
+        header h1{
+            margin-bottom:10px;
+        }
+
+        header p{
+            color:#dfe8f3;
+        }
+
+        main{
+            background:var(--branco);
+            padding:35px;
+            border-radius:0 0 10px 10px;
+            box-shadow:0 5px 15px rgba(0,0,0,.12);
+        }
+
+        h2{
+            color:var(--azul);
+            margin-bottom:15px;
+            border-bottom:2px solid var(--amarelo);
+            padding-bottom:8px;
+        }
+
+        .info{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:20px;
+            margin-bottom:40px;
+        }
+
+        .card{
+            background:#f7f9fb;
+            border-left:5px solid var(--azul2);
+            padding:18px;
+            border-radius:5px;
+        }
+
+        .card span{
+            display:block;
+            font-size:.85rem;
+            color:#666;
+            margin-bottom:6px;
+            font-weight:bold;
+            text-transform:uppercase;
+        }
+
+        .card strong{
+            color:var(--azul);
+            font-size:1.15rem;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+
+        th{
+            background:var(--azul);
+            color:#fff;
+            padding:12px;
+        }
+
+        td{
+            border:1px solid var(--borda);
+            padding:12px;
+        }
+
+        tr:nth-child(even){
+            background:#f7f9fb;
+        }
+
+        .botao{
+            display:inline-block;
+            text-decoration:none;
+            background:var(--azul2);
+            color:#fff;
+            padding:10px 22px;
+            border-radius:5px;
+            font-weight:bold;
+            transition:.25s;
+        }
+
+        .botao:hover{
+            background:var(--azul);
+        }
+
+        footer{
+            margin-top:40px;
+            text-align:center;
+            color:#666;
+            font-size:.9rem;
+        }
+
+        @media(max-width:900px){
+
+            .info{
+                grid-template-columns:1fr 1fr;
+            }
+
+        }
+
+        @media(max-width:600px){
+
+            .info{
+                grid-template-columns:1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<h1>Manual de Manutenção</h1>
+
+<p>
+Peugeot 207 XR 1.4 Flex - Histórico completo de revisões, orçamentos,
+manutenções preventivas e corretivas.
+</p>
+
+</header>
+
+<main>
+
+<section>
+
+<h2>Dados do veículo</h2>
+
+<div class="info">
+
+<div class="card">
+<span>Veículo</span>
+<strong>Peugeot 207 XR</strong>
+</div>
+
+<div class="card">
+<span>Motor</span>
+<strong>1.4 Flex</strong>
+</div>
+
+<div class="card">
+<span>Ano / Modelo</span>
+<strong>2012/2013</strong>
+</div>
+
+<div class="card">
+<span>Repositório</span>
+<strong>Privado</strong>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Histórico de Manutenções</h2>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Data</th>
+<th>Descrição</th>
+<th>Categoria</th>
+<th>Documento</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>29/07/2026</td>
+
+<td>
+Primeira análise técnica do orçamento da revisão geral do veículo.
+</td>
+
+<td>
+Revisão Geral
+</td>
+
+<td style="text-align:center;">
+
+<a class="botao"
+href="Revisoes/Revisao-29072026.html">
+
+Abrir
+
+</a>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<footer>
+
+Manual técnico de manutenção do veículo • Desenvolvido em HTML5 + CSS
+
+</footer>
+
+</main>
+
+</div>
+
+</body>
+
+</html>
